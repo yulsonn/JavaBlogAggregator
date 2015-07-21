@@ -2,6 +2,8 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +25,17 @@
 
 <tilesx:useAttribute name="current" />
 
+<!-- csrt for log out-->
+<form action="/logout" method="post" id="logoutForm">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</form>
+
+<script>
+    function formSubmit() {
+        document.getElementById("logoutForm").submit();
+    }
+</script>
+
 <div class="container">
 
   <!-- Static navbar -->
@@ -40,12 +53,24 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/" />'>Home</a></li>
-          <li class="${current == 'users' ? 'active' : ''}"><a href='<spring:url value="/users" />'>Users</a></li>
-          <li class="${current == 'register' ? 'active' : ''}"><a href='<spring:url value="/register" />'>Registration</a></li>
+          <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <li class="${current == 'users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Users</a></li>
+          </sec:authorize>
+          <li class="${current == 'register' ? 'active' : ''}"><a href='<spring:url value="/register.html" />'>Registration</a></li>
         </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <sec:authorize access="!isAuthenticated()">
+              <li class="${current == 'login' ? 'active' : ''}"><a href='<spring:url value="/login.html" />'>Sign in</a></li>
+          </sec:authorize>
+          <sec:authorize access="isAuthenticated()">
+              <li><a href='<spring:url value="javascript:formSubmit()" />'>Sign out</a></li>
+          </sec:authorize>
+      </ul>
       </div>
     </div>
   </nav>
+
+
 
   <tiles:insertAttribute name="body" />
 

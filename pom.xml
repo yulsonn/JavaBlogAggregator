@@ -10,6 +10,7 @@
     <properties>
         <spring.version>4.1.6.RELEASE</spring.version>
         <apache.tiles>3.0.5</apache.tiles>
+        <spring.security.version>4.0.1.RELEASE</spring.security.version>
     </properties>
 
     <dependencies>
@@ -107,6 +108,24 @@
             <version>1.8.1.RELEASE</version>
         </dependency>
 
+        <!--Spring Security-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
         <!--include hibernate-core and other dependencies, witch are needed to hibernate-entitymanager-->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -120,6 +139,7 @@
             <artifactId>hsqldb</artifactId>
             <version>2.3.3</version>
         </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>
