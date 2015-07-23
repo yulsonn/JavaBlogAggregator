@@ -64,6 +64,8 @@
           </sec:authorize>
           <sec:authorize access="isAuthenticated()">
               <li><a href='<spring:url value="javascript:formSubmit()" />'>Sign out</a></li>
+              <li class="${current == 'account' ? 'active' : ''}"><a href='<spring:url value="/account.html" />'>My account</a></li>
+
           </sec:authorize>
       </ul>
       </div>

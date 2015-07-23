@@ -73,6 +73,18 @@ public class UserService {
     }
 
     /**
+     *
+     * @param name
+     * @return User with blogs, found by given name
+     *
+     * */
+
+    public User findOneWithBlogs(String name){
+        User user = userRepository.findByName(name);
+        return findOneWithBlogs(user.getId());
+    }
+
+    /**
      * Save given User into database
      *
      * @param user
@@ -88,5 +100,9 @@ public class UserService {
         user.setRoles(roles);
 
         userRepository.save(user);
+    }
+
+    public void delete(int id){
+        userRepository.delete(id);
     }
 }
