@@ -66,11 +66,11 @@
 <div class="tab-content">
   <c:forEach items="${user.blogs}" var="blog">
     <div class="tab-pane" id="blog_${blog.id}">
-      <h1>${blog.name}</h1>
+      <h1><c:out value="${blog.name}" /></h1>
       <p>
       <a href="<spring:url value="/blog/remove/${blog.id}.html"/>" class="btn btn-danger triggerRemove">remove</a>
       <p>
-      <p>${blog.url}</p>
+      <p><c:out value="${blog.url}" /></p>
 
       <table class="table table-bordered table-hover table-striped">
         <thead>
@@ -82,8 +82,8 @@
         <tbody>
         <c:forEach items="${blog.items}" var="item">
           <tr>
-            <td>${item.title}</td>
-            <td>${item.link}</td>
+            <td><c:out value="${item.title}" /></td>
+            <td><c:out value="${item.link}" /></td>
           </tr>
         </c:forEach>
         </tbody>

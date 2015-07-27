@@ -39,7 +39,7 @@
 </style>
 
 <sec:authorize access="isAuthenticated()">
-  <p>You are already logged in as: ${pageContext.request.userPrincipal.name}</p>>
+  <p>You are already logged in as: <c:out value="${pageContext.request.userPrincipal.name}" /></p>>
 </sec:authorize>
 
 <sec:authorize access="!isAuthenticated()">
