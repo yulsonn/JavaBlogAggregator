@@ -19,6 +19,8 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+
     <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
@@ -26,7 +28,7 @@
 <tilesx:useAttribute name="current" />
 
 <!-- csrt for log out-->
-<form action="/logout" method="post" id="logoutForm">
+<form action="<spring:url value="/logout" />" method="post" id="logoutForm">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 
