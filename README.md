@@ -15,7 +15,7 @@ Created using this tutorial: http://www.javavids.com/tutorial/spring-web-applica
  
 # How to run
 You can build the project using Maven (clean -> install) or you can take already built JavaBlogAgregator.war file in the root catalog of the project and deploy it to the web server.
-To authorize your should enter login and password. 
-2 users already created:
+<p>To authorize your should enter login and password. </p>
+<p>2 users already created:</p>
 * login admin / password: admin
 * login: user / password: user
