@@ -54,20 +54,22 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/" />'>Home</a></li>
-          <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <li class="${current == 'users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Users</a></li>
-          </sec:authorize>
-          <li class="${current == 'register' ? 'active' : ''}"><a href='<spring:url value="/register.html" />'>Registration</a></li>
+            <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/" />'>Home</a></li>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <li class="${current == 'users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Users</a></li>
+            </sec:authorize>
+            <li class="${current == 'register' ? 'active' : ''}"><a href='<spring:url value="/register.html" />'>Registration</a></li>
+            <sec:authorize access="isAuthenticated()">
+                <li class="${current == 'account' ? 'active' : ''}"><a href='<spring:url value="/account.html" />'>My account</a></li>
+            </sec:authorize>
         </ul>
+
       <ul class="nav navbar-nav navbar-right">
           <sec:authorize access="!isAuthenticated()">
               <li class="${current == 'login' ? 'active' : ''}"><a href='<spring:url value="/login.html" />'>Sign in</a></li>
           </sec:authorize>
           <sec:authorize access="isAuthenticated()">
               <li><a href='<spring:url value="javascript:formSubmit()" />'>Sign out</a></li>
-              <li class="${current == 'account' ? 'active' : ''}"><a href='<spring:url value="/account.html" />'>My account</a></li>
-
           </sec:authorize>
       </ul>
       </div>

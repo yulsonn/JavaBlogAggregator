@@ -39,8 +39,16 @@
 </style>
 
 <sec:authorize access="isAuthenticated()">
-  <p>You are already logged in as: <c:out value="${pageContext.request.userPrincipal.name}" /></p>>
+  <h3>You are already logged in as: <c:out value="${pageContext.request.userPrincipal.name}" /></h3>
 </sec:authorize>
+
+<c:if test="${param.error eq true}">
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Invalid username or password
+  </div>
+</c:if>
 
 <sec:authorize access="!isAuthenticated()">
   <form Class="form-signin" role = "form" action='<spring:url value="/login"/>' method="post">

@@ -1,3 +1,4 @@
+<%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../layout/taglib.jsp"%>
 
@@ -102,7 +103,9 @@
         <tbody>
         <c:forEach items="${blog.items}" var="item">
           <tr>
-            <td><c:out value="${item.publishedDate}" /></td>
+            <td>
+              <fmt:formatDate value="${item.publishedDate}" pattern="dd.MM.yyyy HH:mm:ss"/>
+            </td>
             <td>
               <strong>
                 <a href="<c:out value="${item.link}" />" target="_blank">
@@ -128,7 +131,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="modalRemoveLabel">Remove blog</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body test">
         Really remove?
       </div>
       <div class="modal-footer">

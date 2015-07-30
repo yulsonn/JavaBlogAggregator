@@ -34,7 +34,7 @@ public class InitDbService {
     @Autowired
     private ItemRepository itemRepository;
 
-    /*PostConstruct annotation means that the method will be called automaticly during deployment*/
+    /*PostConstruct annotation means that the method will be called automatically during deployment*/
     @PostConstruct
     public void init(){
         Role roleUser = new Role();
@@ -56,13 +56,43 @@ public class InitDbService {
         userAdmin.setRoles(roles);
         userRepository.save(userAdmin);
 
+        User userUser = new User();
+        userUser.setEnabled(true);
+        userUser.setName("user");
+        BCryptPasswordEncoder userEncoder = new BCryptPasswordEncoder();
+        userUser.setPassword(userEncoder.encode("user"));
+        List<Role> userRoles = new ArrayList<>();
+        userRoles.add(roleUser);
+        userUser.setRoles(userRoles);
+        userRepository.save(userUser);
+
         Blog blogJavavids = new Blog();
         blogJavavids.setName("JavaVids");
         blogJavavids.setUrl("http://feeds.feedburner.com/javavids?format=xml");
         blogJavavids.setUser(userAdmin);
         blogRepository.save(blogJavavids);
 
-/*        Item item1 = new Item();
+        Blog blogJavaWorldCore = new Blog();
+        blogJavaWorldCore.setName("JavaWorld");
+        blogJavaWorldCore.setUrl("http://www.javaworld.com/category/core-java/index.rss");
+        blogJavaWorldCore.setUser(userAdmin);
+        blogRepository.save(blogJavaWorldCore);
+
+        Blog blogTomcat = new Blog();
+        blogTomcat.setName("Tomcat");
+        blogTomcat.setUrl("http://www.tomcatexpert.com/blog/feed");
+        blogTomcat.setUser(userUser);
+        blogRepository.save(blogTomcat);
+
+        Blog blogMkyong = new Blog();
+        blogMkyong.setName("Mkyong");
+        blogMkyong.setUrl("http://feeds.feedburner.com/FeedForMkyong");
+        blogMkyong.setUser(userUser);
+        blogRepository.save(blogMkyong);
+
+
+/*
+        Item item1 = new Item();
         item1.setBlog(blogJavavids);
         item1.setTitle("first");
         item1.setLink("http://www.javavids.com");
@@ -74,6 +104,7 @@ public class InitDbService {
         item2.setTitle("second");
         item2.setLink("http://www.javavids.com");
         item2.setPublishedDate(new Date());
-        itemRepository.save(item2);*/
+        itemRepository.save(item2);
+*/
     }
 }
